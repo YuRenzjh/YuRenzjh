@@ -1,0 +1,123 @@
+# Jekyll 配置文件 - GitHub Pages 兼容
+# 📝 此文件由 GitHub Agent 生成，用于 Jekyll 博客配置，请勿手动修改结构
+
+# 站点基本信息
+title: "你的名字 | 个人博客"
+description: "用文字安放心情的地方"
+url: "https://<YOUR_USERNAME>.github.io"
+baseurl: ""
+
+# 本地化设置
+timezone: Asia/Shanghai
+locale: "zh-CN"
+lang: zh-CN
+
+# Markdown 处理
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+# 集合设置
+collections_dir: ""
+
+# 插件（仅限 GitHub Pages 白名单）
+plugins:
+  - jekyll-archives
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# jekyll-archives 配置 - 用于心情归档
+jekyll-archives:
+  enabled:
+    - categories
+  layouts:
+    category: archive-taxonomy
+  permalinks:
+    category: /mood/:name/
+
+# 默认值设置
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "博主"
+  - scope:
+      path: "_pages"
+      type: "pages"
+    values:
+      layout: "page"
+
+# 文件包含/排除
+include:
+  - _pages
+  - .nojekyll
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+  - README.md
+
+# 分页设置
+paginate: 10
+paginate_path: "/posts/page:num/"
+
+# Feed 配置
+feed:
+  path: feed.xml
+
+# SEO 配置
+twitter:
+  card: summary
+social:
+  name: 博主
+  links: []
+
+# 莫兰迪蓝色系 CSS 变量（用于 Liquid 模板引用）
+morandi_colors:
+  calm: "#8CA3AD"
+  joy: "#A7B9C2"
+  thought: "#6E7F8D"
+  inspire: "#5A6D7D"
+  tranquil: "#F8F9FA"
+  gentle: "#4A5B6B"
+
+# 心情配置映射
+moods:
+  平静:
+    class: "mood-calm"
+    emoji: "💙"
+    icon: "😊"
+    color: "#8CA3AD"
+  雀跃:
+    class: "mood-joy"
+    emoji: "💛"
+    icon: "😄"
+    color: "#A7B9C2"
+  沉思:
+    class: "mood-thought"
+    emoji: "🖤"
+    icon: "🤔"
+    color: "#6E7F8D"
+  灵感:
+    class: "mood-inspire"
+    emoji: "💜"
+    icon: "✨"
+    color: "#5A6D7D"
+  伤感:
+    class: "mood-sad"
+    emoji: "🤍"
+    icon: "🕊️"
+    color: "#9BA8B4"
+  温柔:
+    class: "mood-gentle"
+    emoji: "🩵"
+    icon: "🌸"
+    color: "#4A5B6B"

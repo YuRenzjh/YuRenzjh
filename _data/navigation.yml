@@ -1,0 +1,54 @@
+# 📝 此文件由 GitHub Agent 生成，用于导航菜单配置，请勿手动修改结构
+
+main:
+  - title: "首页"
+    url: /
+    icon: "🏠"
+  - title: "文章"
+    url: /posts/
+    icon: "📝"
+  - title: "闲聊"
+    url: /chats/
+    icon: "💬"
+  - title: "吐槽"
+    url: /rants/
+    icon: "😤"
+  - title: "相册"
+    url: /gallery/
+    icon: "📷"
+  - title: "关于我"
+    url: /about/
+    icon: "👤"
+
+# 心情云图配置
+moods:
+  - name: "平静"
+    emoji: "💙"
+    icon: "😊"
+    url: /mood/平静/
+    class: "mood-calm"
+  - name: "雀跃"
+    emoji: "💛"
+    icon: "😄"
+    url: /mood/雀跃/
+    class: "mood-joy"
+  - name: "沉思"
+    emoji: "🖤"
+    icon: "🤔"
+    url: /mood/沉思/
+    class: "mood-thought"
+  - name: "灵感"
+    emoji: "💜"
+    icon: "✨"
+    url: /mood/灵感/
+    class: "mood-inspire"
+  - name: "伤感"
+    emoji: "🤍"
+    icon: "🕊️"
+    url: /mood/伤感/
+    class: "mood-sad"
+  - name: "温柔"
+    emoji: "🩵"
+    icon: "🌸"
+    url: /mood/温柔/
+    class: "mood-gentle"

@@ -1,0 +1,74 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于文章布局模板，请勿手动修改结构 -->
+---
+layout: default
+---
+<article class="container">
+  <div class="content-wrapper">
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="post-date">📅 {{ page.date | date: "%Y年%m月%d日" }}</span>
+        
+        {% if page.mood %}
+          {% assign mood_info = site.moods[page.mood] %}
+          {% if mood_info %}
+            <a href="{{ '/mood/' | append: page.mood | append: '/' | relative_url }}" class="mood-badge {{ mood_info.class }}">
+              {{ mood_info.emoji }}{{ page.mood }}
+            </a>
+          {% else %}
+            <span class="mood-badge mood-calm">💙{{ page.mood }}</span>
+          {% endif %}
+        {% endif %}
+        
+        {% if page.categories.size > 0 %}
+          <span class="post-categories">
+            {% for category in page.categories %}
+              <span class="category-tag">{{ category }}</span>
+            {% endfor %}
+          </span>
+        {% endif %}
+        
+        {% if page.author %}
+          <span class="post-author">✍️ {{ page.author }}</span>
+        {% endif %}
+      </div>
+    </header>
+    
+    <div class="post-content">
+      {{ content }}
+    </div>
+    
+    {% if page.tags.size > 0 %}
+    <footer class="post-footer">
+      <div class="post-tags">
+        <span>🏷️ 标签：</span>
+        {% for tag in page.tags %}
+          <span class="category-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </footer>
+    {% endif %}
+  </div>
+</article>
+
+<!-- 相关文章推荐 -->
+{% assign related_posts = site.posts | where: "mood", page.mood | where_exp: "item", "item.url != page.url" | limit: 3 %}
+{% if related_posts.size > 0 %}
+<section class="container related-posts">
+  <div class="content-wrapper">
+    <h3>相关文章</h3>
+    <div class="posts-grid">
+      {% for post in related_posts %}
+        <div class="post-card">
+          <h4 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h4>
+          <div class="post-card-meta">
+            <span class="post-card-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

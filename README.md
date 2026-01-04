@@ -1,16 +1,184 @@
-## Hi there 👋
+# 💙 个人博客 - Jekyll 静态博客模板
 
-<!--
-**YuRenzjh/YuRenZjh** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+一个基于 Jekyll 的个人博客模板，专为 GitHub Pages 设计，支持心情标签、暗色模式、响应式布局等功能。
 
-Here are some ideas to get you started:
+![预览截图](https://via.placeholder.com/1200x630/8CA3AD/FFFFFF?text=博客预览)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## ✨ 特性
+
+- 🎨 **莫兰迪蓝色系**：优雅柔和的配色方案
+- 🌙 **暗色模式**：自动跟随系统 + 手动切换
+- 💭 **心情标签**：6种心情分类（平静、雀跃、沉思、灵感、伤感、温柔）
+- 📱 **响应式设计**：完美适配各种设备
+- ⚡ **丝滑动效**：纯 CSS 实现的优雅过渡
+- 🔌 **GitHub Pages 兼容**：无需本地构建，直接部署
+
+## 📁 项目结构
+
+```
+├── _config.yml          # Jekyll 配置文件
+├── _layouts/            # 布局模板
+│   ├── default.html     # 默认布局
+│   ├── page.html        # 页面布局
+│   ├── post.html        # 文章布局
+│   ├── home.html        # 首页布局
+│   └── archive-taxonomy.html  # 归档页布局
+├── _includes/           # 组件模板
+│   ├── header.html      # 页头
+│   ├── footer.html      # 页脚
+│   └── mood-badge.html  # 心情徽章组件
+├── _pages/              # 页面
+│   ├── home.md          # 首页
+│   ├── posts.md         # 文章列表
+│   ├── chats.md         # 闲聊
+│   ├── rants.md         # 吐槽
+│   ├── gallery.md       # 相册
+│   └── about.md         # 关于我
+├── _posts/              # 文章目录
+│   └── 2026-01-04-初雪.md
+├── _data/
+│   └── navigation.yml   # 导航菜单配置
+├── assets/
+│   ├── css/main.css     # 主样式文件
+│   └── gallery/         # 相册图片目录
+├── admin.html           # 后台管理页面
+├── 404.html             # 404 错误页面
+├── CNAME                # 自定义域名配置
+└── .nojekyll            # 禁用 Jekyll 默认处理
+```
+
+## 🚀 快速开始
+
+### 1. Fork 或使用此模板
+
+点击 GitHub 页面右上角的 "Use this template" 按钮，或直接 Fork 此仓库。
+
+### 2. 启用 GitHub Pages
+
+1. 进入仓库的 Settings → Pages
+2. Source 选择 `Deploy from a branch`
+3. Branch 选择 `main`，目录选择 `/ (root)`
+4. 点击 Save
+
+### 3. 配置自定义域名（可选）
+
+1. 编辑 `CNAME` 文件，将 `example.com` 替换为你的域名
+2. 在域名 DNS 设置中添加 CNAME 记录指向 `<username>.github.io`
+
+### 4. 修改站点信息
+
+编辑 `_config.yml` 文件：
+
+```yaml
+title: "你的博客名称"
+description: "博客描述"
+url: "https://your-domain.com"  # 或 https://<username>.github.io
+```
+
+## 📝 写文章
+
+### 文章格式
+
+在 `_posts/` 目录创建新文件，命名格式：`YYYY-MM-DD-标题.md`
+
+```markdown
+---
+title: "文章标题"
+date: 2026-01-04
+mood: "雀跃"
+categories: [生活, 随笔]
+tags: [日记, 心情]
+excerpt: "文章摘要..."
+---
+
+正文内容（支持 Markdown）
+```
+
+### 心情选项
+
+- 💙 平静
+- 💛 雀跃
+- 🖤 沉思
+- 💜 灵感
+- 🤍 伤感
+- 🩵 温柔
+
+## 🔐 后台管理 (admin.html)
+
+博客提供了一个简易的后台管理页面，支持通过 GitHub API 直接发布文章。
+
+### 使用方法
+
+1. 访问 `https://your-domain.com/admin.html`
+2. 使用 GitHub Personal Access Token 登录
+   - [点击创建 Token](https://github.com/settings/tokens/new?scopes=repo&description=Blog%20Admin)（需勾选 repo 权限）
+3. 填写文章信息并发布
+
+### 注意事项
+
+- Token 仅存储在浏览器 sessionStorage，关闭标签页后自动清除
+- 如需 OAuth 登录，需自行创建 GitHub OAuth App 并配置 Client ID
+
+## 🎨 自定义样式
+
+### 修改配色
+
+编辑 `assets/css/main.css` 中的 CSS 变量：
+
+```css
+:root {
+  --blue-calm: #8CA3AD;
+  --blue-joy: #A7B9C2;
+  --blue-thought: #6E7F8D;
+  --blue-inspire: #5A6D7D;
+  --blue-tranquil: #F8F9FA;
+  --blue-gentle: #4A5B6B;
+}
+```
+
+### 修改导航
+
+编辑 `_data/navigation.yml` 文件。
+
+## 📷 相册使用
+
+1. 将图片上传到 `assets/gallery/` 目录
+2. 编辑 `_pages/gallery.md`，添加对应的 `<img>` 标签
+
+```html
+<div class="gallery-item">
+  <img src="{{ '/assets/gallery/photo.jpg' | relative_url }}" alt="描述">
+  <div class="gallery-item-caption">图片说明</div>
+</div>
+```
+
+## 🔧 本地开发（可选）
+
+```bash
+# 安装 Jekyll
+gem install bundler jekyll
+
+# 安装依赖
+bundle install
+
+# 启动本地服务器
+bundle exec jekyll serve
+
+# 访问 http://localhost:4000
+```
+
+## 📜 使用的插件
+
+此模板仅使用 GitHub Pages 官方支持的插件：
+
+- `jekyll-archives` - 归档页面生成
+- `jekyll-seo-tag` - SEO 优化
+- `jekyll-feed` - RSS 订阅
+
+## 📄 许可证
+
+MIT License
+
+---
+
+> 💙 用文字安放心情的地方

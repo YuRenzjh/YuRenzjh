@@ -1,0 +1,18 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于 404 错误页面，请勿手动修改结构 -->
+---
+layout: default
+permalink: /404.html
+---
+<div class="error-page">
+  <div class="error-code">404</div>
+  <h1 class="error-title">页面走丢了</h1>
+  <p class="error-message">抱歉，您访问的页面不存在或已被移动。</p>
+  
+  <form class="error-search" action="https://www.google.com/search" method="get" target="_blank">
+    <input type="hidden" name="sitesearch" value="{{ site.url }}">
+    <input type="text" name="q" placeholder="搜索本站内容..." class="form-input">
+    <button type="submit" class="btn">搜索</button>
+  </form>
+  
+  <a href="{{ '/' | relative_url }}" class="btn btn-outline">🏠 返回首页</a>
+</div>

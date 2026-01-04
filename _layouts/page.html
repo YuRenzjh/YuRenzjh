@@ -1,0 +1,20 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于页面布局模板，请勿手动修改结构 -->
+---
+layout: default
+---
+<div class="container">
+  <div class="content-wrapper">
+    {% if page.title %}
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="page-description">{{ page.description }}</p>
+      {% endif %}
+    </header>
+    {% endif %}
+    
+    <div class="page-content">
+      {{ content }}
+    </div>
+  </div>
+</div>

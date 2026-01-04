@@ -1,0 +1,66 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于首页布局模板，请勿手动修改结构 -->
+---
+layout: default
+---
+<div class="container">
+  {{ content }}
+  
+  <!-- 心情云图 -->
+  <section class="mood-cloud">
+    <h2 class="mood-cloud-title">💭 心情云图</h2>
+    {% for mood in site.data.navigation.moods %}
+      <a href="{{ mood.url | relative_url }}" class="mood-badge {{ mood.class }}">
+        {{ mood.emoji }}{{ mood.name }}{{ mood.icon }}
+      </a>
+    {% endfor %}
+  </section>
+  
+  <!-- 最新文章 -->
+  <section class="latest-posts">
+    <h2 class="page-title">📝 最新文章</h2>
+    <div class="posts-list">
+      {% for post in site.posts limit:5 %}
+        <article class="post-card">
+          <div class="post-card-header">
+            <h3 class="post-card-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+          </div>
+          
+          <div class="post-card-meta">
+            <span class="post-card-date">📅 {{ post.date | date: "%Y年%m月%d日" }}</span>
+            
+            {% if post.mood %}
+              {% assign mood_info = site.moods[post.mood] %}
+              {% if mood_info %}
+                <a href="{{ '/mood/' | append: post.mood | append: '/' | relative_url }}" class="mood-badge {{ mood_info.class }}">
+                  {{ mood_info.emoji }}{{ post.mood }}
+                </a>
+              {% else %}
+                <span class="mood-badge mood-calm">💙{{ post.mood }}</span>
+              {% endif %}
+            {% endif %}
+          </div>
+          
+          {% if post.excerpt %}
+            <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+          {% endif %}
+          
+          {% if post.categories.size > 0 %}
+            <div class="post-card-categories">
+              {% for category in post.categories %}
+                <span class="category-tag">{{ category }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+    
+    {% if site.posts.size > 5 %}
+      <div class="text-center mt-3">
+        <a href="{{ '/posts/' | relative_url }}" class="btn">查看全部文章 →</a>
+      </div>
+    {% endif %}
+  </section>
+</div>

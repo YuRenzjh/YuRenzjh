@@ -1,0 +1,13 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于页脚组件，请勿手动修改结构 -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      {% for item in site.data.navigation.main %}
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% endfor %}
+    </div>
+    <p class="footer-copyright">
+      &copy; {{ site.time | date: "%Y" }} {{ site.title | default: "个人博客" }}. 用文字安放心情的地方.
+    </p>
+  </div>
+</footer>

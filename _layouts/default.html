@@ -1,0 +1,115 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于默认布局模板，请勿手动修改结构 -->
+<!DOCTYPE html>
+<html lang="{{ site.locale | default: 'zh-CN' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
+  
+  <!-- 预加载关键资源 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  
+  <!-- SEO 标签 -->
+  {% seo %}
+  
+  <!-- RSS Feed -->
+  {% feed_meta %}
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>">
+  
+  <!-- 防止暗色模式闪烁 -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    })();
+  </script>
+</head>
+<body>
+  {% include header.html %}
+  
+  <main class="site-content">
+    {{ content }}
+  </main>
+  
+  {% include footer.html %}
+  
+  <!-- 暗色模式切换按钮 -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="切换暗色模式">
+    <span class="icon-sun">☀️</span>
+    <span class="icon-moon">🌙</span>
+  </button>
+  
+  <!-- 主题切换脚本 -->
+  <script>
+    (function() {
+      const toggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      
+      // 获取当前主题
+      function getTheme() {
+        return localStorage.getItem('theme') || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+      
+      // 设置主题
+      function setTheme(theme) {
+        html.classList.add('no-transition');
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            html.classList.remove('no-transition');
+          });
+        });
+      }
+      
+      // 切换主题
+      toggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme') || getTheme();
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+      
+      // 监听系统主题变化
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+      
+      // 导航栏滚动效果
+      const header = document.querySelector('.site-header');
+      let lastScroll = 0;
+      
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+      });
+      
+      // 移动端导航菜单
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- 📝 此文件由 GitHub Agent 生成，用于心情徽章组件，请勿手动修改结构 -->
+{%- comment -%}
+  用法: {% include mood-badge.html mood="雀跃" link=true %}
+  参数:
+    mood: 心情名称（平静/雀跃/沉思/灵感/伤感/温柔）
+    link: 是否带链接（true/false）
+{%- endcomment -%}
+
+{% assign mood_name = include.mood %}
+{% assign mood_info = site.moods[mood_name] %}
+
+{% if mood_info %}
+  {% if include.link %}
+    <a href="{{ '/mood/' | append: mood_name | append: '/' | relative_url }}" class="mood-badge {{ mood_info.class }}">
+      {{ mood_info.emoji }}{{ mood_name }}{{ mood_info.icon }}
+    </a>
+  {% else %}
+    <span class="mood-badge {{ mood_info.class }}">
+      {{ mood_info.emoji }}{{ mood_name }}{{ mood_info.icon }}
+    </span>
+  {% endif %}
+{% else %}
+  <span class="mood-badge mood-calm">💙{{ mood_name | default: "平静" }}</span>
+{% endif %}
