@@ -6,10 +6,25 @@ permalink: /about/
 ---
 
 <div class="about-header">
-  <img src="https://via.placeholder.com/150/8CA3AD/FFFFFF?text=头像" alt="头像" class="about-avatar">
+  <div class="about-avatar-placeholder">👤</div>
   <h1 class="about-name">你的名字</h1>
   <p class="about-bio">用文字安放心情的地方</p>
 </div>
+
+<style>
+.about-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto var(--spacing-md);
+  background: linear-gradient(135deg, var(--blue-calm), var(--blue-inspire));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  border: 4px solid var(--color-primary);
+}
+</style>
 
 ## 👋 你好！
 

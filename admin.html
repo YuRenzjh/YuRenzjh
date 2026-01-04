@@ -576,6 +576,15 @@
       return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     }
     
+    // UTF-8 字符串转 Base64（用于支持中文内容）
+    function utf8ToBase64(str) {
+      const encoder = new TextEncoder();
+      const bytes = encoder.encode(str);
+      let binary = '';
+      bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+      return btoa(binary);
+    }
+    
     // 显示 Toast
     function showToast(message, type = 'info') {
       const toast = $('#toast');
@@ -828,7 +837,7 @@ mood: "${mood}"`;
             },
             body: JSON.stringify({
               message: `📝 新文章: ${title}`,
-              content: btoa(unescape(encodeURIComponent(content))),
+              content: utf8ToBase64(content),
               branch: 'main'
             })
           }
